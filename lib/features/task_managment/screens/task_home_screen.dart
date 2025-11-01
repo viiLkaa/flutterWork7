@@ -12,29 +12,18 @@ class _TaskHomeScreenState extends State<TaskHomeScreen> {
   List<Task> _tasks = [];
   int _selectedIndex = 0;
 
-  final List<String> _titles = [
-    'Все задачи',
-    'Новые',
-    'В работе',
-    'Завершенные',
-  ];
+  final List<String> _titles = ['Все задачи', 'Новые', 'В работе', 'Завершенные',];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(() {_selectedIndex = index;});
   }
 
   void _addTask(Task task) {
-    setState(() {
-      _tasks.add(task);
-    });
+    setState(() {_tasks.add(task);});
   }
 
   List<Task> _filteredTasks() {
-    if (_selectedIndex == 0) {
-      return _tasks;
-    }
+    if (_selectedIndex == 0) {return _tasks;}
     TaskStatus status = TaskStatus.newTask;
     if (_selectedIndex == 1) status = TaskStatus.newTask;
     if (_selectedIndex == 2) status = TaskStatus.inProgress;
@@ -43,15 +32,11 @@ class _TaskHomeScreenState extends State<TaskHomeScreen> {
   }
 
   void _updateTaskStatus(int index, TaskStatus status) {
-    setState(() {
-      _tasks[index].status = status;
-    });
+    setState(() {_tasks[index].status = status;});
   }
 
   void _deleteTask(int index) {
-    setState(() {
-      _tasks.removeAt(index);
-    });
+    setState(() {_tasks.removeAt(index);});
   }
 
   @override

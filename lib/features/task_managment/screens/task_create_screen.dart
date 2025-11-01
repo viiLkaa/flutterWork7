@@ -11,6 +11,7 @@ class _TaskCreateScreenState extends State<TaskCreateScreen> {
   String _title = '';
   String _description = '';
   TaskStatus _status = TaskStatus.newTask;
+  String? imageUrl;
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
@@ -19,6 +20,7 @@ class _TaskCreateScreenState extends State<TaskCreateScreen> {
         title: _title,
         description: _description,
         status: _status,
+        imageUrl: imageUrl,
       );
       Navigator.pop(context, newTask);
     }
@@ -56,6 +58,13 @@ class _TaskCreateScreenState extends State<TaskCreateScreen> {
                 onSaved: (value) {
                   _description = value ?? '';
                 },
+              ),
+              SizedBox(height: 15),
+
+              //текст для +картинки
+              TextFormField(
+                decoration: InputDecoration(labelText: "Ссылка на изображение"),
+                onSaved: (value) => imageUrl = value,
               ),
               SizedBox(height: 15),
 

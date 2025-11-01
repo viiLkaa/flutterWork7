@@ -4,11 +4,13 @@ class Task {
   String title;
   String description;
   TaskStatus status;
+  String? imageUrl; //добавляем картинку для 5 задач онли
 
   Task({
     required this.title,
     required this.description,
     this.status = TaskStatus.newTask,
+    this.imageUrl,
   });
 }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/task.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 class TaskItem extends StatelessWidget {
   final Task task;
@@ -25,6 +27,18 @@ class TaskItem extends StatelessWidget {
             Text(task.description),
             SizedBox(height: 4),
             Text('Статус: ' + statusToString(task.status)),
+            if (task.imageUrl != null && task.imageUrl!.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: CachedNetworkImage(
+                  imageUrl: task.imageUrl!,
+                  width: 60,
+                  height: 60,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
           ],
         ),
         trailing: PopupMenuButton<String>(
