@@ -11,7 +11,7 @@ class _TaskCreateScreenState extends State<TaskCreateScreen> {
   String _title = '';
   String _description = '';
   TaskStatus _status = TaskStatus.newTask;
-  String? imageUrl;
+  String? _imageUrl;
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
@@ -20,8 +20,10 @@ class _TaskCreateScreenState extends State<TaskCreateScreen> {
         title: _title,
         description: _description,
         status: _status,
-        imageUrl: imageUrl,
+        imageUrl: _imageUrl,
       );
+
+      // Вертикальный навигационный возврат (pop)
       Navigator.pop(context, newTask);
     }
   }
@@ -29,13 +31,14 @@ class _TaskCreateScreenState extends State<TaskCreateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Добавить задачу')),
+      appBar: AppBar(
+        title: Text('Создать задачу'),
+      ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               TextFormField(
                 decoration: InputDecoration(labelText: 'Название'),
@@ -45,29 +48,20 @@ class _TaskCreateScreenState extends State<TaskCreateScreen> {
                   }
                   return null;
                 },
-                onSaved: (value) {
-                  _title = value ?? '';
-                },
+                onSaved: (value) => _title = value ?? '',
               ),
               SizedBox(height: 15),
-
-
               TextFormField(
                 decoration: InputDecoration(labelText: 'Описание'),
                 maxLines: 3,
-                onSaved: (value) {
-                  _description = value ?? '';
-                },
+                onSaved: (value) => _description = value ?? '',
               ),
               SizedBox(height: 15),
-
-              //текст для +картинки
               TextFormField(
-                decoration: InputDecoration(labelText: "Ссылка на изображение"),
-                onSaved: (value) => imageUrl = value,
+                decoration: InputDecoration(labelText: 'Ссылка на изображение'),
+                onSaved: (value) => _imageUrl = value,
               ),
               SizedBox(height: 15),
-
               DropdownButtonFormField<TaskStatus>(
                 value: _status,
                 decoration: InputDecoration(labelText: 'Статус'),

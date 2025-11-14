@@ -16,21 +16,17 @@ class TaskTrackerApp extends StatelessWidget {
           color: Color(0xFF1F1F1F),
           elevation: 1,
         ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: Color(0xFF1F1F1F),
-          selectedItemColor: Colors.blueAccent,
-          unselectedItemColor: Colors.grey[400],
-        ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: Colors.blueAccent,
         ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: Color(0xFF3A3A3A),
-          border:OutlineInputBorder(),
+          border: OutlineInputBorder(),
           labelStyle: TextStyle(color: Colors.white70),
-        )
+        ),
       ),
+      // Только страничная навигация — без routes
       home: TaskHomeScreen(),
     );
   }
